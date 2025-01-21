@@ -244,6 +244,8 @@ GEM
       io-console (~> 0.5)
     rexml (3.4.0)
     rubyzip (2.4.1)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -317,6 +319,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)
+  sass-rails (>= 6)
   sassc-rails
   selenium-webdriver
   simple_form!
