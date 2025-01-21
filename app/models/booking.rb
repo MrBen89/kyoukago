@@ -7,4 +7,3 @@ class Booking < ApplicationRecord
   validates :status, presence: true
   validates :total, presence: true
 end
-#comment
