@@ -1,0 +1,17 @@
+.card-stretch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px; /* Adjust the width as needed */
+  height: 750px; /* Adjust the height as needed */
+  padding-bottom: 30px;
+
+  .card-header, .card-body, .card-footer {
+    flex: 1;
+  }
+
+  .card-body img {
+    width: 100%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
