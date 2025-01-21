@@ -198,7 +198,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.1-x86_64-darwin)
       racc (~> 1.4)
-    orm_adapter (0.5.0)
     pg (1.5.9)
     popper_js (2.11.8)
     psych (5.2.3)
@@ -256,6 +255,8 @@ GEM
       railties (>= 5.2)
     rexml (3.4.0)
     rubyzip (2.4.1)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -333,6 +334,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)
+  sass-rails (>= 6)
   sassc-rails
   selenium-webdriver
   simple_form!
