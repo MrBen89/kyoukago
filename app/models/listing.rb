@@ -2,6 +2,8 @@ class Listing < ApplicationRecord
   belongs_to :user
   belongs_to :book
 
+  has_one_attached :image
+
   validates :title, presence: true
   validates :price, presence: true
   validates :condition, presence: true

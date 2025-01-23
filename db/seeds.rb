@@ -11,11 +11,12 @@
 require 'httparty'
 
 puts "Clearing database..."
+ReservationReview.destroy_all
 Booking.destroy_all
 Listing.destroy_all
 User.destroy_all
 Book.destroy_all
-ReservationReview.destroy_all
+
 
 puts "Creating users..."
 users = [
@@ -48,7 +49,7 @@ books.sample(5).each do |book|
   Listing.create!(
     book: book,
     user: buyers.sample,
-    title: "yes",
+    title: ["To kill a zebra", "To kill a hamster", "To kill a Mia", "To kill a mockingbird", "To kill nobody at all, preferably"].sample,
     price: 350,
     condition: "Used",
     comment: "delicious"
