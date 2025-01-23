@@ -1,1 +1,11 @@
-<h1> Show Page </h1>
+<div class="d-flex">
+  <div>
+    <h1> <%= @listing.title %> - <%= @listing.price %>円 </h1>
+  </div>
+  <div>
+    <h3> <%= @listing.condition %> - Last updated:<%= @listing.updated_at %></h3>
+  </div>
+  <p> <%= @listing.comment %> </p>
+
+  <button class="btn btn-primary">Book this book!</button>
+</div>
