@@ -1,16 +1,15 @@
 class CreateBooks < ActiveRecord::Migration[7.1]
   def change
-    create_table :books do |t|
-      t.string :title
-      t.string :author
-      t.string :genre
-      t.string :isbn
-      t.string :publisher
-      t.string :language
-      t.date :publication_date
-      t.integer :page_count
+    unless table_exists?(:books)
+      create_table :books do |t|
+        t.string :title
+        t.string :author
+        t.text :overview
+        t.string :poster_url
+        t.decimal :rating
 
-      t.timestamps
+        t.timestamps
+      end
     end
   end
 end
