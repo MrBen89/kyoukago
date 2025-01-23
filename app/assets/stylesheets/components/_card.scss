@@ -1,17 +1,33 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
 .card-stretch {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 400px; /* Adjust the width as needed */
   height: 750px; /* Adjust the height as needed */
-  padding-bottom: 30px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow to the card */
+}
 
   .card-header, .card-body, .card-footer {
     flex: 1;
   }
 
+  .card-body p {
+    padding-top: 10px;
+    text-align: center;
+  }
+
   .card-body img {
     width: 100%; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-}
