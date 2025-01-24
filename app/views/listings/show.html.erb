@@ -1,11 +1,29 @@
-<div class="d-flex">
-  <div>
-    <h1> <%= @listing.title %> - <%= @listing.price %>円 </h1>
+<div class="container">
+  <div class="row m-3 justify-content-between">
+    <div class="col-lg-7 p-3 my-3 bg-white rounded shadow">
+      <img class="pb-3" alt="image" style="width: 100%">
+      <h1> <%= @listing.title %> - <%= @listing.price %>円 </h1>
+    </div>
+    <div class="col-lg-4 p-3 my-3 bg-white rounded shadow">
+      <h3> <%= @listing.condition %> - Last updated:<%= @listing.updated_at %></h3>
+      <p> <%= @listing.comment %> </p>
+      <button class="btn btn-primary">Book this book!</button>
+    </div>
   </div>
-  <div>
-    <h3> <%= @listing.condition %> - Last updated:<%= @listing.updated_at %></h3>
-  </div>
-  <p> <%= @listing.comment %> </p>
+  <div class="row m-3 p-3 bg-white rounded shadow d-flex justify-content-between">
+    <img class="pb-3" alt="image" style="width: 100px">
 
-  <button class="btn btn-primary">Book this book!</button>
+    <div class="col-lg-11">
+      <%= @listing.user.email %>
+      <p>
+        <span class="star-box">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </span>
+        42 reviews
+      </p>
+  </div>
 </div>
