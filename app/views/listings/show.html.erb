@@ -4,10 +4,16 @@
       <img class="pb-3" alt="image" style="width: 100%">
       <h1> <%= @listing.title %> - <%= @listing.price %>円 </h1>
     </div>
-    <div class="col-lg-4 p-3 my-3 bg-white rounded shadow">
-      <h3> <%= @listing.condition %> - Last updated:<%= @listing.updated_at %></h3>
-      <p> <%= @listing.comment %> </p>
-      <button class="btn btn-primary">Book this book!</button>
+    <div class="col-lg-4 p-3 my-3 bg-white rounded shadow d-flex flex-column justify-content-between">
+      <div>
+        <h3> <%= @listing.book.title %> by <%= @listing.book.author %> </h3>
+        <p> <%= @listing.condition %> - Last updated:<%= @listing.updated_at %> </p>
+        <p> <%= @listing.comment %> </p>
+        <a href="#"> See <%= @listing.book.title %> by <%= @listing.book.author %> in our Library database! </a>
+      </div>
+      <div style="width: 100%">
+        <button class="btn btn-primary mt-3 w-100">Book this book!</button>
+      </div>
     </div>
   </div>
   <div class="row m-3 p-3 bg-white rounded shadow d-flex justify-content-between">
