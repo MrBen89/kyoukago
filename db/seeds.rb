@@ -30,7 +30,7 @@ users = [
 users.each { |user| User.create!(user) }
 
 puts "Fetching books from Open Library API..."
-response = HTTParty.get("https://openlibrary.org/search.json?q=fiction&limit=10")
+response = HTTParty.get("https://openlibrary.org/search.json?q=fiction&limit=25")
 books_data = response.parsed_response["docs"]
 
 
@@ -47,11 +47,11 @@ end
 puts "Creating listings..."
 buyers = User.all
 books = Book.all
-books.sample(5).each do |book|
-  listing = Listing.create!(
+books.sample(20).each do |book|
+  listing = Listing.new(
     book: book,
     user: buyers.sample,
-    title: ["To kill a zebra", "To kill a hamster", "To kill a Mia", "To kill a mockingbird", "To kill nobody at all, preferably"].sample,
+    title: "#{book.title} #{['used', 'great condition', 'signed by author', 'bit skanky'].sample}",
     price: rand(50..350),
     condition: "Used",
     comment: "Delicious book, slightly used. Comes complete with original dust jacket and coffee stains."
@@ -67,6 +67,7 @@ books.sample(5).each do |book|
       content_type: "image/jpeg"
     )
   end
+  listing.save
 end
 
 puts "Creating bookings..."
