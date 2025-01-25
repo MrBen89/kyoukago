@@ -1,13 +1,15 @@
 <!-- filepath: /Users/liamgingell/code/liam-gingell/kyoukago/app/views/pages/_card.html.erb -->
 <div class="card card-stretch">
   <div class="card-header">
-    <h2><%= card_title %></h2>
+    <h2><%= card.title %></h2>
   </div>
+
   <div class="card-body">
     <%= image_tag card_image_path, alt: card_title if card_image_path.present? %>
-    <p><%= card_content %></p>
+    <p><%= card.content %></p>
   </div>
+
   <div class="card-footer">
-    <h3><%= card_author %></h3>
+    <h3><%= card.author %></h3>
   </div>
 </div>

@@ -1,3 +1,19 @@
-  <% @listings.each do |listing| %>
-    <li> <%= listing.title %> </li>
-  <% end %>
+<% @listings.each do |listing| %>
+<% render partial: 'card', locals: { card: listing } %>
+  <li> <%= listing.title %> </li>
+<% end %>
+
+<div class="card card-stretch">
+  <div class="card-header">
+    <h2><%= card.title %></h2>
+  </div>
+
+  <div class="card-body">
+    <%= image_tag card_image_path, alt: card_title if card_image_path.present? %>
+    <p><%= card.content %></p>
+  </div>
+
+  <div class="card-footer">
+    <h3><%= card.author %></h3>
+  </div>
+</div>
