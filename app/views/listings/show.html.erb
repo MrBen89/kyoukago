@@ -1,7 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8">
-      <img class="pb-3" alt="image" style="width: 100%">
+      <% if @listing.image.attached? %>
+        <img class="pb-3" src="<%= url_for(@listing.image) %>" alt="Listing image" style="width: 100%">
+      <% else %>
+        <img class="pb-3" src="default-image.jpg" alt="No image available" style="width: 100%">
+      <% end %>
       <h1><%= @listing.title %> - <%= @listing.price %>円</h1>
     </div>
     <div class="col-lg-4 p-3 my-3 bg-white rounded shadow d-flex flex-column justify-content-between">
@@ -20,7 +24,11 @@
     </div>
   </div>
   <div class="row m-3 p-3 bg-white rounded shadow d-flex justify-content-between">
-    <img class="pb-3" alt="image" style="width: 100px">
+    <% if @listing.user.profile_image.attached? %>
+      <img class="pb-3" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px"> <!-- Changed: Display user profile image -->
+    <% else %>
+      <img class="pb-3" src="default-user-image.jpg" alt="User profile" style="width: 100px"> <!-- Changed: Fallback image if no profile image attached -->
+    <% end %>
     <div class="col-lg-11">
       <%= @listing.user.email %>
       <p>
