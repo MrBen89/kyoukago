@@ -1,46 +1,43 @@
-<div class="container">
+<div class="container mt-4">
   <div class="row">
     <div class="col-lg-8 mb-4">
       <% if @listing.image.attached? %>
-        <img class="pb-3 rounded" src="<%= url_for(@listing.image) %>" alt="Listing image" style="width: 80%; max-width: 300px; height: auto;">
+        <img class="img-fluid rounded shadow" src="<%= url_for(@listing.image) %>" alt="Listing image" style="max-width: 350px; height: auto;">
       <% else %>
-        <img class="pb-3" src="https://randomuser.me/api/portraits/men/1.jpg" alt="No image available" style="width: 80%; max-width: 300px; height: auto;">
+        <img class="img-fluid rounded shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="No image available" style="max-width: 350px; height: auto;">
       <% end %>
-      <h1><%= @listing.title %> - <%= @listing.price %>円</h1>
     </div>
-    <div class="col-lg-4 p-3 my-3 bg-white rounded shadow d-flex flex-column justify-content-between">
-      <div>
-        <h3 class="font-weight-bold text-dark"><%= @listing.book.title %> by <%= @listing.book.author %></h3>
-        <p><%= @listing.condition %> - Last updated: <%= @updated == 1 ? "Today" : "#{@updated} days ago" %></p>
-        <p class="text-muted"><%= @listing.comment %></p>
-        <a href="#" class="btn btn-outline-primary">See <%= @listing.book.title %> by <%= @listing.book.author %> in our Library database!</a>
+    <div class="col-lg-4 p-4 mb-4 bg-light rounded shadow d-flex flex-column justify-content-between">
+      <div class="listing-details mb-3">
+        <h1 class="font-weight-bold text-dark mb-3"><%= @listing.title %> - <%= @listing.price %>円</h1>
+        <h4 class="text-muted mb-3"><%= @listing.book.title %> by <%= @listing.book.author %></h4>
+        <p class="text-muted"><%= @listing.condition %> - <%= @updated == 1 ? "Updated Today" : "#{@updated} days ago" %></p>
+        <p><%= @listing.comment %></p>
+        <a href="#" class="btn btn-primary btn-lg mt-3 w-100">See <%= @listing.book.title %> in our Library</a>
       </div>
-      <div style="width: 100%">
-        <!-- Button to trigger modal -->
-        <button type="button" class="btn btn-primary mt-3 w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">
-          Borrow this book!
-        </button>
-      </div>
+      <button type="button" class="btn btn-success mt-3 w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">
+        Borrow this book!
+      </button>
     </div>
   </div>
-  <div class="row m-3 p-3 bg-white rounded shadow d-flex justify-content-between">
+
+  <!-- User Info -->
+  <div class="row mb-3 p-3 bg-white rounded shadow d-flex align-items-center">
     <% if @listing.user.profile_image.attached? %>
-      <img class="pb-3 rounded-circle" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px;">
+      <img class="pb-3 rounded-circle shadow" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px; height: 100px;">
     <% else %>
-      <img class="pb-3 rounded-circle" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User profile" style="width: 100px;"> <!-- Random man image -->
+      <img class="pb-3 rounded-circle shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User profile" style="width: 100px; height: 100px;">
     <% end %>
     <div class="col-lg-11">
       <p class="font-weight-bold"><%= @listing.user.email %></p>
-      <p>
-        <span class="star-box">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </span>
-        42 reviews
-      </p>
+      <div class="star-box mb-2">
+        <i class="fa-solid fa-star text-warning"></i>
+        <i class="fa-solid fa-star text-warning"></i>
+        <i class="fa-solid fa-star text-warning"></i>
+        <i class="fa-regular fa-star text-warning"></i>
+        <i class="fa-regular fa-star text-warning"></i>
+      </div>
+      <p class="text-muted">42 reviews</p>
     </div>
   </div>
 </div>
