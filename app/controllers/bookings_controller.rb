@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(bookings_param)
     @booking.user = current_user
+    @booking.status = 0
     @booking.save
     redirect_to listings_path, status: :see_other
   end
