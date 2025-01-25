@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-8 mb-4">
       <% if @listing.image.attached? %>
-        <img class="pb-3" src="<%= url_for(@listing.image) %>" alt="Listing image" style="width: 100%">
+        <img class="pb-3 rounded" src="<%= url_for(@listing.image) %>" alt="Listing image" style="width: 80%; max-width: 300px; height: auto;">
       <% else %>
-        <img class="pb-3" src="default-image.jpg" alt="No image available" style="width: 100%">
+        <img class="pb-3" src="https://randomuser.me/api/portraits/men/1.jpg" alt="No image available" style="width: 80%; max-width: 300px; height: auto;">
       <% end %>
       <h1><%= @listing.title %> - <%= @listing.price %>円</h1>
     </div>
     <div class="col-lg-4 p-3 my-3 bg-white rounded shadow d-flex flex-column justify-content-between">
       <div>
-        <h3><%= @listing.book.title %> by <%= @listing.book.author %></h3>
+        <h3 class="font-weight-bold text-dark"><%= @listing.book.title %> by <%= @listing.book.author %></h3>
         <p><%= @listing.condition %> - Last updated: <%= @updated == 1 ? "Today" : "#{@updated} days ago" %></p>
-        <p><%= @listing.comment %></p>
-        <a href="#">See <%= @listing.book.title %> by <%= @listing.book.author %> in our Library database!</a>
+        <p class="text-muted"><%= @listing.comment %></p>
+        <a href="#" class="btn btn-outline-primary">See <%= @listing.book.title %> by <%= @listing.book.author %> in our Library database!</a>
       </div>
       <div style="width: 100%">
         <!-- Button to trigger modal -->
@@ -25,12 +25,12 @@
   </div>
   <div class="row m-3 p-3 bg-white rounded shadow d-flex justify-content-between">
     <% if @listing.user.profile_image.attached? %>
-      <img class="pb-3" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px"> <!-- Changed: Display user profile image -->
+      <img class="pb-3 rounded-circle" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px;">
     <% else %>
-      <img class="pb-3" src="default-user-image.jpg" alt="User profile" style="width: 100px"> <!-- Changed: Fallback image if no profile image attached -->
+      <img class="pb-3 rounded-circle" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User profile" style="width: 100px;"> <!-- Random man image -->
     <% end %>
     <div class="col-lg-11">
-      <%= @listing.user.email %>
+      <p class="font-weight-bold"><%= @listing.user.email %></p>
       <p>
         <span class="star-box">
           <i class="fa-solid fa-star"></i>
