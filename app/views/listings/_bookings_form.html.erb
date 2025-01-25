@@ -11,8 +11,12 @@
             <div class="form-group">
               <%= f.input :end_date, label: 'End Date', input_html: { class: 'form-control', id: 'end_date' } %>
             </div>
-            <%# <div class="form-group">
-              <%= f.input :total_price, label: 'Total price to pay', input_html: { class: 'form-control', id: 'total_price', readonly: true } %>
+
+            <% days = @booking.start_date %>
+            <div class="form-group">
+              <%= f.input :total, label: 'Total price to pay', input_html: { value: 'days', class: 'form-control', id: 'total_price', disabled: true } %>
+            </div>
+
             <div class="form-group">
               <%= f.button :submit, 'Book Now', class: 'btn btn-primary' %>
             </div>
