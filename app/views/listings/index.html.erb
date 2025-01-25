@@ -8,6 +8,7 @@
               <div style="250px">
                 <% if book.image.attached? %>
                   <img class="pb-3" src="<%= url_for(book.image) %>" alt="Listing image" style="width: 230px">
+                  <%= cl_image_tag book.image.key, height: 300, width: 400, crop: :fill %>
                 <% end %>
               </div>
             </div>
