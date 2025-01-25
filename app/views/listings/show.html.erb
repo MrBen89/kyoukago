@@ -1,1 +1,35 @@
-<h1> Show Page </h1>
+<div class="container">
+  <div class="row m-3 justify-content-between">
+    <div class="col-lg-7 p-3 my-3 bg-white rounded shadow">
+      <img class="pb-3" alt="image" style="width: 100%">
+      <h1> <%= @listing.title %> - <%= @listing.price %>円 </h1>
+    </div>
+    <div class="col-lg-4 p-3 my-3 bg-white rounded shadow d-flex flex-column justify-content-between">
+      <div>
+        <h3> <%= @listing.book.title %> by <%= @listing.book.author %> </h3>
+        <p> <%= @listing.condition %> - Last updated: <%= @updated == 1 ? "Today" : "#{@updated} days ago"  %> </p>
+        <p> <%= @listing.comment %> </p>
+        <a href="#"> See <%= @listing.book.title %> by <%= @listing.book.author %> in our Library database! </a>
+      </div>
+      <div style="width: 100%">
+        <button class="btn btn-primary mt-3 w-100">Book this book!</button>
+      </div>
+    </div>
+  </div>
+  <div class="row m-3 p-3 bg-white rounded shadow d-flex justify-content-between">
+    <img class="pb-3" alt="image" style="width: 100px">
+
+    <div class="col-lg-11">
+      <%= @listing.user.email %>
+      <p>
+        <span class="star-box">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </span>
+        42 reviews
+      </p>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :bookings
   has_many :listings
   has_one_attached :profile_image
 
