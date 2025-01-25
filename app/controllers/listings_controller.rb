@@ -1,3 +1,5 @@
+require "date"
+
 class ListingsController < ApplicationController
   def index
     @listings = Listing.all
@@ -7,6 +9,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     @booking = Booking.new
     @bookings = Booking.all
+    @updated = (Date.today - @listing.updated_at.to_date).to_i
   end
 
   def update
