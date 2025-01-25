@@ -1,25 +1,21 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-8 offset-md2">
+    <div class="col-md-8 offset-md-2">
       <h1>Rent a book <%= @listing.title %></h1>
       <div class="card">
         <div class="card-body">
           <%= simple_form_for [@listing, @booking] do |f| %>
-          <div class="form-group">
-            <%= f.input :start_date, label: 'Start Date', input_html: { class: 'form-control'} %>
-          </div>
-          <div class="form-group">
-            <%= f.input :end_date, label: 'End Date', input_html: { class: 'form-control'} %>
-          </div>
-          <div class="form-group">
-            <%= f.input :status, label: 'Status', input_html: { class: 'form-control'} %>
-          </div>
-          <div class="form-group">
-            <%= f.input :total, label: 'Status', input_html: { class: 'form-control'} %>
-          </div>
-          <div class="form-group">
-            <%= f.button :submit, 'Book Now', class: 'btn btn-primary' %>
-          </div>
+            <div class="form-group">
+              <%= f.input :start_date, label: 'Start Date', input_html: { class: 'form-control', id: 'start_date' } %>
+            </div>
+            <div class="form-group">
+              <%= f.input :end_date, label: 'End Date', input_html: { class: 'form-control', id: 'end_date' } %>
+            </div>
+            <%# <div class="form-group">
+              <%= f.input :total_price, label: 'Total price to pay', input_html: { class: 'form-control', id: 'total_price', readonly: true } %>
+            <div class="form-group">
+              <%= f.button :submit, 'Book Now', class: 'btn btn-primary' %>
+            </div>
           <% end %>
         </div>
       </div>
