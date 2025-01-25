@@ -9,6 +9,8 @@
 #   end
 
 require 'httparty'
+require 'open-uri'
+
 
 puts "Clearing database..."
 ReservationReview.destroy_all
@@ -46,7 +48,7 @@ puts "Creating listings..."
 buyers = User.all
 books = Book.all
 books.sample(5).each do |book|
-  Listing.create!(
+  listing = Listing.create!(
     book: book,
     user: buyers.sample,
     title: ["To kill a zebra", "To kill a hamster", "To kill a Mia", "To kill a mockingbird", "To kill nobody at all, preferably"].sample,
@@ -54,6 +56,17 @@ books.sample(5).each do |book|
     condition: "Used",
     comment: "Delicious book, slightly used. Comes complete with original dust jacket and coffee stains."
   )
+
+  cover_id = books_data.find { |b| b["title"] == book.title }&.dig("cover_i")
+  if cover_id
+    image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
+    downloaded_image = URI.open(image_url)
+    listing.image.attach(
+      io: downloaded_image,
+      filename: "#{book.title.parameterize}.jpg",
+      content_type: "image/jpeg"
+    )
+  end
 end
 
 puts "Creating bookings..."
