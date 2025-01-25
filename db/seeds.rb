@@ -37,10 +37,21 @@ books_data = response.parsed_response["docs"]
 puts "Creating books..."
 sellers = User.all
 books_data.each do |book_data|
-  Book.create!(
+  book = Book.create!(
     title: book_data["title"],
-    author: book_data["author_name"]&.join(", ") || "Unknown Author",
+    author: book_data["author_name"]&.join(", ") || "Unknown Author"
   )
+
+  cover_id = book_data["cover_i"]
+  if cover_id
+    image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
+    downloaded_image = URI.open(image_url)
+    book.image.attach(
+      io: downloaded_image,
+      filename: "#{book.title.parameterize}.jpg",
+      content_type: "image/jpeg"
+    )
+  end
 end
 
 
