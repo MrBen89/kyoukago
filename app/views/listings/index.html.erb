@@ -5,9 +5,9 @@
         <div class="card shadow-sm border-light">
           <div class="card-body text-center">
             <div class="bg-light rounded mb-3" style="height: 400px;">
-              <div style="250px">
+              <div style="width: 250px">
                 <% if book.image.attached? %>
-                  <img class="pb-3" src="<%= url_for(book.image) %>" alt="Listing image" style="width: 230px">
+                  <%= cl_image_tag book.image.key, class: "center-block", width: 230 %>
                 <% end %>
               </div>
             </div>
