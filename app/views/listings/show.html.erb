@@ -66,7 +66,11 @@
           <div class="card-body">
             <h5 class="card-title"><%= book.title %></h5>
             <p class="card-text text-muted"><%= book.author %></p>
-            <a href="#" class="btn btn-primary btn-sm">View Details</a>
+             <% if book.listings.any? %>
+               <%= link_to "View Details", listing_path(book.listings.first), class: "btn btn-primary btn-sm" %>
+             <% else %>
+               <p class="text-muted">No listing available</p>
+             <% end %>
           </div>
         </div>
       </div>
