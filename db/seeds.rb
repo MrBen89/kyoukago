@@ -37,7 +37,7 @@ books_data = response.parsed_response["docs"]
 puts "Creating books..."
 sellers = User.all
 books_data.each do |book_data|
-  book = Book.create!(
+  book = Book.new(
     title: book_data["title"],
     author: book_data["author_name"]&.join(", ") || "Unknown Author"
   )
@@ -52,6 +52,7 @@ books_data.each do |book_data|
       content_type: "image/jpeg"
     )
   end
+  book.save
 end
 
 
