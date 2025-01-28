@@ -47,7 +47,7 @@
     <div class="col-lg-4">
       <h5>Recent Reviews:</h5>
       <% @reviews.each do |review| %>
-        <p class="text-muted"><%= review.user.email %>: "<%= review.content %>"</p>
+        <p class="text-muted"><%= review.user.email %>: "<%= review.comment %>"</p>
       <% end %>
     </div>
   </div>
