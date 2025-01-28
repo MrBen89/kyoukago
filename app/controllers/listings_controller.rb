@@ -16,7 +16,6 @@ class ListingsController < ApplicationController
     @updated = (Date.today - @listing.updated_at.to_date).to_i
     @reviews = ReservationReview.joins(:booking).where(bookings: { listing_id: @listing.id }).limit(3)
     @suggested_books = Book.where.not(id: @listing.book_id).limit(4)
-
   end
 
   def update
@@ -31,7 +30,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user = current_user
     @listing.save
-    redirect_to listings_path, status: :see_other
+    redirect_to listings_path, notice: "Listing created!"
   end
 
   private
@@ -39,5 +38,4 @@ class ListingsController < ApplicationController
   def listing_params
     params.require(:listing).permit(:title, :price, :condition, :comment, :book_id, :image)
   end
-
 end
