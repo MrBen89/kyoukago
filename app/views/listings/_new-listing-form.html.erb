@@ -1,0 +1,13 @@
+<%= simple_form_for @listing, html: { multipart: true } do |f| %>
+<div class="form-group">
+  <%= f.input :title, label: 'Title', input_html: { class: 'form-control' } %>
+</div>
+<div class="form-group">
+  <%= f.input :price, label: 'Price per week', input_html: { class: 'form-control' } %>
+</div>
+<div class="form-group">
+  <%= f.input :image, as: :file, label: 'Upload Image', input_html: { class: 'form-control' } %>
+</div>
+<div class="form-group">
+  <%= f.button :submit, 'Create Listing', class: 'btn btn-primary' %>
+</div>

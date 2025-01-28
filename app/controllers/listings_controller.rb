@@ -25,7 +25,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user = current_user
     @listing.save
-    redirect_to listings_path, status: :see_other
+    redirect_to listings_path, notice: "Listing created!"
   end
 
   private
