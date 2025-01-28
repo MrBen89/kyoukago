@@ -10,7 +10,6 @@ class ListingsController < ApplicationController
     @booking = Booking.new
     @bookings = Booking.all
     @updated = (Date.today - @listing.updated_at.to_date).to_i
-
   end
 
   def update
@@ -33,5 +32,4 @@ class ListingsController < ApplicationController
   def listing_params
     params.require(:listing).permit(:title, :price, :condition, :comment, :book_id, :image)
   end
-
 end
