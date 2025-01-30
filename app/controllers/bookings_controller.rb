@@ -1,17 +1,15 @@
 class BookingsController < ApplicationController
   def create
-    @listing = Listing.find(params[:listing_id])
-    @booking = @listing.bookings.build(booking_params)
-    if @booking.save
-      redirect_to @listing, notice: 'Booking was successfully created.'
-    else
-      render 'listings/show'
-    end
+    @booking = Booking.new(bookings_param)
+    @booking.user = current_user
+    @booking.status = 0
+    @booking.save
+    redirect_to listings_path, status: :see_other
   end
 
   private
 
-  def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :total_price)
+  def bookings_param
+    params.require(:booking).permit(:listing_id, :start_date, :end_date, :status, :total)
   end
 end

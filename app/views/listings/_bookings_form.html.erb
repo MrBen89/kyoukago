@@ -1,19 +1,22 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <h1>Borrow <%= @listing.title %></h1>
+      <h1>Borrow  <%= @listing.title %></h1>
       <div class="card">
         <div class="card-body">
-          <%= simple_form_for [@listing, @booking], html: { data: { controller: "booking-price", booking_price_price_per_week_value: @listing.price } } do |f| %>
+          <%= simple_form_for [@listing, @booking] do |f| %>
             <div class="form-group">
-              <%= f.input :start_date, label: 'Start Date', input_html: { class: 'form-control', id: 'start_date', data: { action: "change->booking-price#calculateTotalPrice", booking_price_target: "startDate" } } %>
+              <%= f.input :start_date, label: 'Start Date', input_html: { class: 'form-control', id: 'start_date' } %>
             </div>
             <div class="form-group">
-              <%= f.input :end_date, label: 'End Date', input_html: { class: 'form-control', id: 'end_date', data: { action: "change->booking-price#calculateTotalPrice", booking_price_target: "endDate" } } %>
+              <%= f.input :end_date, label: 'End Date', input_html: { class: 'form-control', id: 'end_date' } %>
             </div>
+
+            <% days = @booking.start_date %>
             <div class="form-group">
-              <%= f.input :total_price, label: 'Total price to pay', input_html: { class: 'form-control', id: 'total_price', data: { booking_price_target: "totalPrice" }, disabled: true } %>
+              <%= f.input :total, label: 'Total price to pay', input_html: { value: 'days', class: 'form-control', id: 'total_price', disabled: true } %>
             </div>
+
             <div class="form-group">
               <%= f.button :submit, 'Book Now', class: 'btn btn-primary' %>
             </div>
