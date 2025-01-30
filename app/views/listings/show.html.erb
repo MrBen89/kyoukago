@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-lg-4 p-4 mb-4 bg-light rounded shadow d-flex flex-column justify-content-between">
-       <div class="listing-details mb-3">
+      <div class="listing-details mb-3">
         <h1 class="font-weight-bold text-dark mb-3"><%= @listing.title %></h1>
         <h3><%= @listing.price %>円 per week</h3>
         <h4 class="text-muted mb-3"><%= @listing.book.title %> by <%= @listing.book.author %></h4>
@@ -66,7 +66,11 @@
           <div class="card-body">
             <h5 class="card-title"><%= book.title %></h5>
             <p class="card-text text-muted"><%= book.author %></p>
-            <a href="#" class="btn btn-primary btn-sm">View Details</a>
+             <% if book.listings.any? %>
+               <%= link_to "View Details", listing_path(book.listings.first), class: "btn btn-primary btn-sm" %>
+             <% else %>
+               <p class="text-muted">No listing available</p>
+             <% end %>
           </div>
         </div>
       </div>
