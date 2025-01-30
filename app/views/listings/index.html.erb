@@ -1,15 +1,10 @@
-<div class="row mb-4">
-  <h5>Sort by Genre:</h5>
-  <div class="btn-group" role="group">
-    <%= link_to "All", listings_path, class: "btn btn-outline-primary" %>
-    <%= link_to "Romance", listings_path(genre: "Romance"), class: "btn btn-outline-primary" %>
-    <%= link_to "Sci-Fi", listings_path(genre: "Sci-Fi"), class: "btn btn-outline-primary" %>
-    <%= link_to "Horror", listings_path(genre: "Horror"), class: "btn btn-outline-primary" %>
-    <%= link_to "Comedy", listings_path(genre: "Comedy"), class: "btn btn-outline-primary" %>
-  </div>
-</div>
-
+<%= render partial: 'sidebar' %>
 <div class="row g-4">
+
+  <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+  Filter
+  </a>
+
   <% if @listings.present? %>
     <% @listings.each do |book| %>
       <div class="col-6 col-sm-4 col-md-3 p-3">
