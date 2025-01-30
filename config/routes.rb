@@ -9,10 +9,16 @@ Rails.application.routes.draw do
 
   resources :books, only: [:index, :show]
   resources :listings, only: [:index, :show, :edit, :update, :new, :create] do
-    resources :bookings, only: [:edit, :update, :create]
+    resources :bookings, only: [:edit, :update, :create] do
+    member do
+      patch :accept
+      patch :deny
+    end
+  end
     resources :reviews, only: [:create]
   end
 
   # Defines the root path route ("/")
+  get '/dashboard/', to: 'users#dashboard', as: 'user_dashboard'
   # root "posts#index"
 end

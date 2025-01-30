@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">My Listings</h2>
+
+  <div class="row">
+    <% @listings.each do |listing| %>
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <!-- Book Title -->
+            <h5 class="card-title"><%= listing.title %></h5>
+
+            <!-- Show Pending Booking -->
+            <% pending_booking = listing.bookings.find_by(status: "pending") %>
+            <% if pending_booking %>
+              <p class="text-muted">Booked by: <%= pending_booking.user.username %></p>
+              <p class="text-warning fw-bold">Status: Pending</p>
+
+              <!-- Accept & Deny Buttons -->
+              <%= button_to "Accept", accept_booking_path(pending_booking), method: :patch, class: "btn btn-success btn-sm me-2" %>
+              <%= button_to "Deny", deny_booking_path(pending_booking), method: :patch, class: "btn btn-danger btn-sm" %>
+            <% else %>
+              <p class="text-muted">No pending bookings.</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
