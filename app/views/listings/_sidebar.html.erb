@@ -14,6 +14,11 @@
         %>
         <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
       <% end %>
+      <% form_with url: listings_path, method: :get, class: "d-flex" do %>
+        <%= input :maxprice, as: :range, prompt: "my data", collection: 0..500 %>
+        <%= submit_tag "Set Max Price", name: "", class: "btn btn-primary" %>
+      <% end %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
     </div>
     <h5>Or choose a genre</h5>
     <%= link_to "Non-Fiction", listings_path(genre: "Non-Fiction"), class: "btn btn-outline-primary w-100 my-1" %>
