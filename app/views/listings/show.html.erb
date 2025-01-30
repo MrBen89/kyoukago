@@ -1,6 +1,7 @@
 <div class="container mt-4">
   <div class="row">
 
+    <!-- Main Book Image -->
     <div class="col-lg-8 mb-4">
       <% if @listing.image.attached? %>
         <img class="img-fluid rounded shadow" src="<%= url_for(@listing.image) %>" alt="Listing image" style="max-width: 350px; height: auto;">
@@ -9,20 +10,32 @@
       <% end %>
     </div>
 
+     <!-- Book Details -->
     <div class="col-lg-4 p-4 mb-4 bg-light rounded shadow d-flex flex-column justify-content-between">
-       <div class="listing-details mb-3">
+      <div class="listing-details mb-3">
         <h1 class="font-weight-bold text-dark mb-3"><%= @listing.title %></h1>
         <h3><%= @listing.price %>円 per week</h3>
         <h4 class="text-muted mb-3"><%= @listing.book.title %> by <%= @listing.book.author %></h4>
         <p class="text-muted"><%= @listing.condition %> - <%= @updated <= 1 ? "Updated Today" : "#{@updated} days ago" %></p>
         <p><%= @listing.comment %></p>
         <a href="#" class="btn btn-primary btn-lg mt-3 w-100">See <%= @listing.book.title %> in our Library</a>
+
+        <!-- Goodreads Link -->
+        <a href="https://www.goodreads.com/search?q=<%= ERB::Util.url_encode(@listing.book.title) %>"
+           class="btn btn-secondary btn-lg mt-3 w-100"
+           target="_blank"
+           rel="noopener noreferrer">
+          📖 View <%= @listing.book.title %> on Goodreads
+        </a>
       </div>
+
       <button type="button" class="btn btn-primary mt-3 w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">
         Borrow this book!
       </button>
     </div>
   </div>
+
+
 
   <!-- User Info and Reviews -->
   <div class="row mb-3 p-3 bg-white rounded shadow">
@@ -52,44 +65,54 @@
     </div>
   </div>
 
-  <!-- Suggested Items Section -->
-  <div class="row mt-4 p-3 bg-light rounded shadow">
-    <h4>Users who viewed this item also viewed:</h4>
-    <% @suggested_books.each do |book| %>
-      <div class="col-lg-3 mb-3">
-        <div class="card shadow-sm">
+<!-- Users Also Bought Section -->
+<h4 class="mt-4">Users Also Bought:</h4>
+<div id="suggestedBooksCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% @suggested_books.each_with_index do |book, index| %>
+      <div class="carousel-item <%= 'active' if index.zero? %>">
+        <div class="card shadow-sm mx-auto" style="width: 18rem;">
           <% if book.image.attached? %>
-            <img class="card-img-top" src="<%= url_for(book.image) %>" alt="<%= book.title %>" style="height: 150px; object-fit: cover;">
+            <img class="card-img-top" src="<%= url_for(book.image) %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
           <% else %>
-            <img class="card-img-top" src="https://via.placeholder.com/150" alt="<%= book.title %>" style="height: 150px; object-fit: cover;">
+            <img class="card-img-top" src="https://via.placeholder.com/150" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= book.title %></h5>
-            <p class="card-text text-muted"><%= book.author %></p>
-             <% if book.listings.any? %>
-               <%= link_to "View Details", listing_path(book.listings.first), class: "btn btn-primary btn-sm" %>
-             <% else %>
-               <p class="text-muted">No listing available</p>
-             <% end %>
+            <p class="card-text"><%= book.author %></p>
+
+            <% if book.listings.any? %>
+              <%= link_to "View Details", listing_path(book.listings.first), class: "btn btn-primary btn-sm" %>
+            <% else %>
+              <p class="text-muted">No listing available</p>
+            <% end %>
+
+            <%= link_to "View on Goodreads", "https://www.goodreads.com/search?q=#{ERB::Util.url_encode(book.title)}", class: "btn btn-secondary btn-sm mt-2", target: "_blank", rel: "noopener noreferrer" %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
-
-
 <!-- Modal -->
 <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="bookingModalLabel">Borrow this Book!</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= render partial: 'bookings_form' %>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookingModalLabel">Borrow this Book!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= render partial: 'bookings_form' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
