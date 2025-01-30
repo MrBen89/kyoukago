@@ -3,10 +3,19 @@
   <%= f.input :title, label: 'Title', input_html: { class: 'form-control' } %>
 </div>
 <div class="form-group">
-  <%= f.input :price, label: 'Price per week (JP Yen)', input_html: { class: 'form-control' } %>
+  <%= f.input :book_id, collection: @books %>
 </div>
 <div class="form-group">
   <%= f.input :image, as: :file, label: 'Upload Image', input_html: { class: 'form-control' } %>
+</div>
+<div class="form-group">
+  <%= f.input :price, label: 'Price per week (JP Yen)', input_html: { class: 'form-control' } %>
+</div>
+<div class="form-group">
+  <%= f.input :comment, label: 'comment', input_html: { class: 'form-control' } %>
+</div>
+<div class="form-group">
+  <%= f.input :condition, label: 'condition', input_html: { class: 'form-control' } %>
 </div>
 <div class="form-group">
   <%= f.button :submit, 'Create Listing', class: 'btn btn-primary' %>

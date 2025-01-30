@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.find
+    @listing = Listing.find(params[:id])
     @booking = Booking.new
     @bookings = Booking.all
     @updated = (Date.today - @listing.updated_at.to_date).to_i
@@ -26,13 +26,18 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    @books = Book.all
   end
 
   def create
     @listing = Listing.new(listing_params)
     @listing.user = current_user
-    @listing.save
+    @books = Book.all
+    if @listing.save
     redirect_to listings_path, notice: "Listing created!"
+    else
+      render :new
+    end
   end
 
   private
