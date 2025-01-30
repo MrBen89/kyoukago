@@ -8,10 +8,11 @@
         <img class="img-fluid rounded shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="No image available" style="max-width: 350px; height: auto;">
       <% end %>
     </div>
+
     <div class="col-lg-4 p-4 mb-4 bg-light rounded shadow d-flex flex-column justify-content-between">
       <div class="listing-details mb-3">
         <h1 class="font-weight-bold text-dark mb-3"><%= @listing.title %></h1>
-        <h3> <%= @listing.price %>円 per week </h3>
+        <h3><%= @listing.price %>円 per week</h3>
         <h4 class="text-muted mb-3"><%= @listing.book.title %> by <%= @listing.book.author %></h4>
         <p class="text-muted"><%= @listing.condition %> - <%= @updated <= 1 ? "Updated Today" : "#{@updated} days ago" %></p>
         <p><%= @listing.comment %></p>
@@ -23,14 +24,16 @@
     </div>
   </div>
 
-  <!-- User Info -->
-  <div class="row mb-3 p-3 bg-white rounded shadow d-flex align-items-center">
-    <% if @listing.user.profile_image.attached? %>
-      <img class="pb-3 rounded-circle shadow" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px; height: 100px;">
-    <% else %>
-      <img class="pb-3 rounded-circle shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User profile" style="width: 100px; height: 100px;">
-    <% end %>
-    <div class="col-lg-11">
+  <!-- User Info and Reviews -->
+  <div class="row mb-3 p-3 bg-white rounded shadow">
+    <div class="col-lg-2 d-flex align-items-center">
+      <% if @listing.user.profile_image.attached? %>
+        <img class="pb-3 rounded-circle shadow" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px; height: 100px;">
+      <% else %>
+        <img class="pb-3 rounded-circle shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User profile" style="width: 100px; height: 100px;">
+      <% end %>
+    </div>
+    <div class="col-lg-6">
       <p class="font-weight-bold"><%= @listing.user.email %></p>
       <div class="star-box mb-2">
         <i class="fa-solid fa-star text-warning"></i>
@@ -41,8 +44,40 @@
       </div>
       <p class="text-muted">42 reviews</p>
     </div>
+    <div class="col-lg-4">
+      <h5>Recent Reviews:</h5>
+      <% @reviews.each do |review| %>
+        <p class="text-muted"><%= review.user.email %>: "<%= review.comment %>"</p>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Suggested Items Section -->
+  <div class="row mt-4 p-3 bg-light rounded shadow">
+    <h4>Users who viewed this item also viewed:</h4>
+    <% @suggested_books.each do |book| %>
+      <div class="col-lg-3 mb-3">
+        <div class="card shadow-sm">
+          <% if book.image.attached? %>
+            <img class="card-img-top" src="<%= url_for(book.image) %>" alt="<%= book.title %>" style="height: 150px; object-fit: cover;">
+          <% else %>
+            <img class="card-img-top" src="https://via.placeholder.com/150" alt="<%= book.title %>" style="height: 150px; object-fit: cover;">
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <p class="card-text text-muted"><%= book.author %></p>
+             <% if book.listings.any? %>
+               <%= link_to "View Details", listing_path(book.listings.first), class: "btn btn-primary btn-sm" %>
+             <% else %>
+               <p class="text-muted">No listing available</p>
+             <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
