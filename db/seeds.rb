@@ -43,16 +43,16 @@ books_data.each do |book_data|
     publication_date: DateTime.new(book_data["first_publish_year"]) || "Date Unknown",
   )
 
-  # cover_id = book_data["cover_i"]
-  # if cover_id
-  #   image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
-  #   downloaded_image = URI.open(image_url)
-  #   book.image.attach(
-  #     io: downloaded_image,
-  #     filename: "#{book.title.parameterize}.jpg",
-  #     content_type: "image/jpeg"
-  #   )
-  # end
+  cover_id = book_data["cover_i"]
+  if cover_id
+    image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
+    downloaded_image = URI.open(image_url)
+    book.image.attach(
+      io: downloaded_image,
+      filename: "#{book.title.parameterize}.jpg",
+      content_type: "image/jpeg"
+    )
+  end
   book.save
 end
 
@@ -70,16 +70,16 @@ books.sample(20).each do |book|
     comment: "Delicious book, slightly used. Comes complete with original dust jacket and coffee stains."
   )
 
-  # cover_id = books_data.find { |b| b["title"] == book.title }&.dig("cover_i")
-  # if cover_id
-  #   image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
-  #   downloaded_image = URI.open(image_url)
-  #   listing.image.attach(
-  #     io: downloaded_image,
-  #     filename: "#{book.title.parameterize}.jpg",
-  #     content_type: "image/jpeg"
-  #   )
-  # end
+  cover_id = books_data.find { |b| b["title"] == book.title }&.dig("cover_i")
+  if cover_id
+    image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
+    downloaded_image = URI.open(image_url)
+    listing.image.attach(
+      io: downloaded_image,
+      filename: "#{book.title.parameterize}.jpg",
+      content_type: "image/jpeg"
+    )
+  end
   listing.save
 end
 
@@ -93,7 +93,7 @@ listings.sample(5).each do |listing|
     start_date: "2025-01-26",
     end_date: "2025-01-28",
     status: 0,
-    total_price: 350
+    total: 350
   )
 end
 

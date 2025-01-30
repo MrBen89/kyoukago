@@ -2,21 +2,8 @@
 <div class="form-group">
   <%= f.input :title, label: 'Title', input_html: { class: 'form-control' } %>
 </div>
-<div class="form-control">
-  <%= f.label :book_id, "Select a Book" %>
-    <%= f.input :book_id, collection: Book.all, prompt: "Search for a book...",
-      input_html: { class: "select2", data: { placeholder: "Search for a book..." } } %>
-  </div>
-  <%= f.submit "Submit", class: "btn btn-primary" %>
-</div>
 <div class="form-group">
   <%= f.input :price, label: 'Price per week (JP Yen)', input_html: { class: 'form-control' } %>
-</div>
-<div class="form-group">
-  <%= f.input :condition, label: 'condition', input_html: { class: 'form-control' } %>
-</div>
-<div class="form-group">
-  <%= f.input :comment, label: 'comment', input_html: { class: 'form-control' } %>
 </div>
 <div class="form-group">
   <%= f.input :image, as: :file, label: 'Upload Image', input_html: { class: 'form-control' } %>
