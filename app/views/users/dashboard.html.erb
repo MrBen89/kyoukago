@@ -1,0 +1,77 @@
+<h1 class="mb-4">Your Listings</h1>
+
+<div class="row g-4">
+  <% if @listings_as_owner.empty? %>
+    <p>You have no listings</p>
+  <% else %>
+    <% @listings_as_owner.each do |listing| %>
+      <div class="col-6 col-sm-4 col-md-3 p-3">
+        <div class="card shadow-sm border-light">
+          <div class="card-body text-center">
+            <div class="bg-light rounded mb-3" style="height: 400px;">
+              <div style="width: 250px">
+                <% if listing.image.attached? %>
+                  <%= cl_image_tag listing.image.key, class: "center-block", width: 230 %>
+                <% end %>
+              </div>
+            </div>
+            <h5 class="h6 text-dark fw-bold"><%= listing.title %></h5>
+            <p class="text-muted mb-2">Listing ID: <%= listing.id %></p>
+
+            <% listing.bookings.each do |booking| %>
+              <div class="border rounded p-2 mb-2">
+                <p class="mb-1"><strong>Booking ID:</strong> <%= booking.id %></p>
+                <p class="mb-1"><strong>Requested User:</strong> <%= booking.user.email %></p>
+                <p class="mb-1">
+                  <strong>Status:</strong>
+                  <% if booking.status == "Pending" %>
+                    <span class="badge bg-danger"><%= booking.status %></span>
+                  <% else %>
+                    <span class="badge bg-success"><%= booking.status %></span>
+                  <% end %>
+                </p>
+
+                <% if booking.status == "Pending" %>
+                  <%= link_to "Accept", "#", class: "btn btn-sm btn-success mt-2" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<h1 class="mt-5 mb-4">Your Bookings</h1>
+
+<div class="row g-4">
+  <% @bookings.each do |booking| %>
+    <div class="col-6 col-sm-4 col-md-3 p-3">
+      <div class="card shadow-sm border-light">
+        <div class="card-body text-center">
+          <div class="bg-light rounded mb-3" style="height: 400px;">
+            <div style="width: 250px">
+              <% if booking.listing.image.attached? %>
+                <%= cl_image_tag booking.listing.image.key, class: "center-block", width: 230 %>
+              <% end %>
+            </div>
+          </div>
+          <h5 class="h6 text-dark fw-bold"><%= booking.listing.title %></h5>
+          <p class="text-muted mb-2">
+            <strong>Status:</strong>
+            <% if booking.status == "Pending" %>
+              <span class="badge bg-danger"><%= booking.status %></span>
+            <% else %>
+              <span class="badge bg-success"><%= booking.status %></span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="button-container-red d-flex justify-content-end mt-4">
+  <%= link_to "List a Book", new_listing_path, class: "btn btn-primary btn-lg rounded-pill" %>
+</div>

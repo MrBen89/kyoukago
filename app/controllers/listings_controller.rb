@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.find(params[:id])
+    @listing = Listing.find
     @booking = Booking.new
     @bookings = Booking.all
     @updated = (Date.today - @listing.updated_at.to_date).to_i

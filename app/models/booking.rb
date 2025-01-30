@@ -1,4 +1,6 @@
 class Booking < ApplicationRecord
+  enum status: [ :pending, :accepted, :rejected ]
+
   belongs_to :user
   belongs_to :listing
 

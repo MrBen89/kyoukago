@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
+  get '/dashboard/', to: 'users#dashboard', as: 'user_dashboard'
   # root "posts#index"
 end
