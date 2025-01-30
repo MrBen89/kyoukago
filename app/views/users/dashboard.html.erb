@@ -34,8 +34,7 @@
                 <% if booking.status == "pending" %>
                   <div class="d-flex justify-content-center gap-2 mt-2">
                     <%= button_to "Accept", accept_listing_booking_path(listing_id: listing.id, id: booking.id), method: :patch, class: "btn btn-sm btn-success" %>
-<%= button_to "Deny", deny_listing_booking_path(listing_id: listing.id, id: booking.id), method: :patch, class: "btn btn-sm btn-danger" %>
-
+                    <%= button_to "Deny", deny_listing_booking_path(listing_id: listing.id, id: booking.id), method: :patch, class: "btn btn-sm btn-danger" %>
                   </div>
                 <% end %>
               </div>
