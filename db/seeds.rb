@@ -41,8 +41,6 @@ books_data.each do |book_data|
     title: book_data["title"],
     author: book_data["author_name"]&.join(", ") || "Unknown Author",
     publication_date: DateTime.new(book_data["first_publish_year"]) || "Date Unknown",
-    isbn: book_data["isbn"][0],
-    genre: book_data["subject"][0]
   )
 
   cover_id = book_data["cover_i"]
