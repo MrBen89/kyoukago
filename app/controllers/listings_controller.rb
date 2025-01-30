@@ -2,11 +2,13 @@ require "date"
 
 class ListingsController < ApplicationController
   def index
+    @listings = Listing.all
     if params[:genre].present?
-      @listings = Listing.joins(:book).where(books: { genre: params[:genre] })
-    else
-      @listings = Listing.all
+      @listings = Listing.joins(:book).where("genre ILIKE ?", params[:genre] )
+    elsif params[:query].present?
+      @listings = Listing.global_search(params[:query])
     end
+    @genres = get_genres(@listings)
   end
 
   def show
@@ -43,4 +45,12 @@ class ListingsController < ApplicationController
   def listing_params
     params.require(:listing).permit(:title, :price, :condition, :comment, :book_id, :image)
   end
+end
+
+def get_genres(listings)
+  genre_array = []
+  listings.each do |listing|
+    genre_array << listing.book.genre
+  end
+  genre_array.uniq!
 end
