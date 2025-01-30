@@ -1,0 +1,26 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Filter Results</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h5>Find a book/author</h5>
+    <div class="py-3">
+      <%= form_with url: listings_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a keyword"
+        %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <h5>Or choose a genre</h5>
+    <%= link_to "Non-Fiction", listings_path(genre: "Non-Fiction"), class: "btn btn-outline-primary w-100 my-1" %>
+    <%= link_to "Sci-fi", listings_path(genre: "Sci-fi"), class: "btn btn-outline-primary w-100 my-1" %>
+    <%= link_to "Fantasy", listings_path(genre: "Fantasy"), class: "btn btn-outline-primary w-100 my-1" %>
+    <%= link_to "Romance", listings_path(genre: "Romance"), class: "btn btn-outline-primary w-100 my-1" %>
+    <%= link_to "Mystery", listings_path(genre: "Mystery"), class: "btn btn-outline-primary w-100 my-1" %>
+    </div>
+  </div>
+</div>
