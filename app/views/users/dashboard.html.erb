@@ -24,15 +24,19 @@
                 <p class="mb-1"><strong>Requested User:</strong> <%= booking.user.email %></p>
                 <p class="mb-1">
                   <strong>Status:</strong>
-                  <% if booking.status == "Pending" %>
+                  <% if booking.status == "pending" %>
                     <span class="badge bg-danger"><%= booking.status %></span>
                   <% else %>
                     <span class="badge bg-success"><%= booking.status %></span>
                   <% end %>
                 </p>
 
-                <% if booking.status == "Pending" %>
-                  <%= link_to "Accept", "#", class: "btn btn-sm btn-success mt-2" %>
+                <% if booking.status == "pending" %>
+                  <div class="d-flex justify-content-center gap-2 mt-2">
+                    <%= button_to "Accept", accept_listing_booking_path(listing_id: listing.id, id: booking.id), method: :patch, class: "btn btn-sm btn-success" %>
+<%= button_to "Deny", deny_listing_booking_path(listing_id: listing.id, id: booking.id), method: :patch, class: "btn btn-sm btn-danger" %>
+
+                  </div>
                 <% end %>
               </div>
             <% end %>
@@ -60,7 +64,7 @@
           <h5 class="h6 text-dark fw-bold"><%= booking.listing.title %></h5>
           <p class="text-muted mb-2">
             <strong>Status:</strong>
-            <% if booking.status == "Pending" %>
+            <% if booking.status == "pending" %>
               <span class="badge bg-danger"><%= booking.status %></span>
             <% else %>
               <span class="badge bg-success"><%= booking.status %></span>
