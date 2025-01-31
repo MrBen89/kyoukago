@@ -5,16 +5,23 @@
   </div>
   <div class="offcanvas-body">
     <h5>Find a book/author</h5>
-    <div class="py-3">
-    <%= form_with url: listings_path, method: :get, class: "d-flex" do %>
+    <div class="py-3" data-controller="slider">
+    <%= form_with url: listings_path, method: :get, class: "" do %>
+      <div>
+        <label for="price" class="form-label">Max Price <span data-slider-target="display">500<span></label>
+        <input name="price" type=hidden value=500 data-slider-target="box">
+        <input data-slider-target="slide" data-action="change->slider#value" type="range" class="form-range" min="0" max="500" step="100" value="500" id="price">
+      </div>
+      <div class="d-flex my-3">
         <%= text_field_tag :query,
             params[:query],
             class: "form-control",
             placeholder: "Type a keyword"
         %>
         <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      </div>
       <% end %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+
     </div>
     <h5>Or choose a genre</h5>
     <%= link_to "Non-Fiction", listings_path(genre: "Non-Fiction"), class: "btn btn-outline-primary w-100 my-1" %>

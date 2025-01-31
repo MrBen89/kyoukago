@@ -7,28 +7,15 @@
 
   <% if @listings.present? %>
     <% @listings.each do |book| %>
-      <div class="col-6 col-sm-4 col-md-3 p-3">
-        <div class="card shadow-sm border-light">
-          <div class="card-body text-center">
-            <div class="bg-light rounded mb-3" style="height: 400px;">
-              <div style="width: 250px">
-                <% if book.image.attached? %>
-                  <%= cl_image_tag book.image.key, class: "center-block", width: 230 %>
-                <% end %>
-              </div>
-            </div>
-            <h5 class="h6 text-dark fw-bold"><%= book.title %></h5>
-            <p class="text-muted mb-2"><%= book.price %>円 a night</p>
-            <%= link_to "More Details", listing_path(book), class: "btn btn-sm btn-primary" %>
-          </div>
-        </div>
-      </div>
+      <%= render partial: 'card', locals: { book: book } %>
     <% end %>
   <% else %>
     <p>No books available at the moment.</p>
   <% end %>
 </div>
 
-<div class=“button-container-red d-flex justify-content-end mt-4”>
-  <a href=“#” class=“btn btn-primary btn-lg rounded-pill”>List a Book</a>
+<div id="new-button">
+  <%= link_to listings_path, class: "navbar-brand" do %>
+    <i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i>
+  <% end %>
 </div>
