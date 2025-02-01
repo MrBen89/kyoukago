@@ -41,18 +41,8 @@ books_data.each do |book_data|
     title: book_data["title"],
     author: book_data["author_name"]&.join(", ") || "Unknown Author",
     publication_date: DateTime.new(book_data["first_publish_year"]) || "Date Unknown",
+    cover_url: "https://covers.openlibrary.org/b/id/#{book_data["cover_i"]}-L.jpg"
   )
-
-  cover_id = book_data["cover_i"]
-  if cover_id
-    image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
-    downloaded_image = URI.open(image_url)
-    book.image.attach(
-      io: downloaded_image,
-      filename: "#{book.title.parameterize}.jpg",
-      content_type: "image/jpeg"
-    )
-  end
   book.save
 end
 
