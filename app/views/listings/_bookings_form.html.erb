@@ -5,12 +5,17 @@
       <div class="card">
         <div class="card-body" data-controller="total-price">
           <%= simple_form_for [@listing, @booking] do |f| %>
-            <div class="form-group">
-              <%= f.input :start_date, label: 'Start Date', input_html: { class: 'form-control', id: 'start_date' } %>
+            <div class="form-group" data-controller="flatpickr">
+                <%= f.input :start_date, as: :string,input_html: {
+                  data: {
+                    "flatpickr-target": "startDate"
+                  },
+                  class: "form-control" }
+                %>
             </div>
             <div class="form-group">
               <p> <span data-total-price-target="price"> <%= @listing.price %> </span> yen per week </p>
-              <p> Choose how long you want to rent for; </p>
+              <p> Choose how long you want to rent for </p>
 
               <select name="weeks" id="weeks" data-total-price-target="weeks" data-action="change->total-price#update">
                 <option value=1>1 Week</option>
