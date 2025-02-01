@@ -3,18 +3,26 @@
     <div class="col-md-8 offset-md-2">
       <h1>Borrow  <%= @listing.title %></h1>
       <div class="card">
-        <div class="card-body">
+        <div class="card-body" data-controller="total-price">
           <%= simple_form_for [@listing, @booking] do |f| %>
             <div class="form-group">
               <%= f.input :start_date, label: 'Start Date', input_html: { class: 'form-control', id: 'start_date' } %>
             </div>
             <div class="form-group">
-              <%= f.input :end_date, label: 'End Date', input_html: { class: 'form-control', id: 'end_date' } %>
+              <p> <span data-total-price-target="price"> <%= @listing.price %> </span> yen per week </p>
+              <p> Choose how long you want to rent for; </p>
+
+              <select name="weeks" id="weeks" data-total-price-target="weeks" data-action="change->total-price#update">
+                <option value=1>1 Week</option>
+                <option value=2>2 Week</option>
+                <option value=3>3 Week</option>
+                <option value=4>4 Week</option>
+              </select>
             </div>
 
             <% days = @booking.start_date %>
             <div class="form-group">
-              <%= f.input :total, label: 'Total price to pay', input_html: { value: 'days', class: 'form-control', id: 'total_price', disabled: true } %>
+              <%= f.input :total, input_html: { value: @listing.price, class: 'form-control', id: 'total_price', readonly: true, data: {"total-price-target" => "input"} } %>
             </div>
 
             <div class="form-group">

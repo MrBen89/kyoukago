@@ -18,18 +18,17 @@
         <h4 class="text-muted mb-3"><%= @listing.book.title %> by <%= @listing.book.author %></h4>
         <p class="text-muted"><%= @listing.condition %> - <%= @updated <= 1 ? "Updated Today" : "#{@updated} days ago" %></p>
         <p><%= @listing.comment %></p>
-        <a href="#" class="btn btn-primary btn-lg mt-3 w-100">See <%= @listing.book.title %> in our Library</a>
 
         <!-- Goodreads Link -->
         <a href="https://www.goodreads.com/search?q=<%= ERB::Util.url_encode(@listing.book.title) %>"
-           class="btn btn-secondary btn-lg mt-3 w-100"
+           class="btn btn-primary btn-lg mt-3 w-100"
            target="_blank"
            rel="noopener noreferrer">
           📖 View <%= @listing.book.title %> on Goodreads
         </a>
       </div>
 
-      <button type="button" class="btn btn-primary mt-3 w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">
+      <button type="button" class="btn btn-primary btn-lg mt-1 w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">
         Borrow this book!
       </button>
     </div>

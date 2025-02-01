@@ -3,8 +3,13 @@ require "date"
 class ListingsController < ApplicationController
   def index
     @listings = Listing.all
+    p params if params.present?
     if params[:genre].present?
       @listings = Listing.joins(:book).where("genre ILIKE ?", params[:genre] )
+    elsif params[:price].present? && params[:query].present?
+      @listings = Listing.where("price < ?", params[:price] ).global_search(params[:query])
+    elsif params[:price].present?
+      @listings = Listing.where("price < ?", params[:price] )
     elsif params[:query].present?
       @listings = Listing.global_search(params[:query])
     end
