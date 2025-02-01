@@ -1,6 +1,7 @@
 class Listing < ApplicationRecord
   include PgSearch::Model
   has_many :bookings
+  has_many :reservation_reviews, through: :bookings
 
   belongs_to :user
   belongs_to :book

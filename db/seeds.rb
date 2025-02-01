@@ -73,29 +73,32 @@ books.sample(20).each do |book|
   listing.save
 end
 
-puts "Creating bookings..."
-buyers = User.all
-listings = Listing.all
-listings.sample(5).each do |listing|
-  Booking.create!(
-    listing: listing,
-    user: buyers.sample,
-    start_date: "2025-01-26",
-    end_date: "2025-01-28",
-    status: 0,
-    total: 350
-  )
-end
 
 puts "Creating reviews..."
 bookings = Booking.all
-listings.each do |listing|
+
+
+puts "Creating reviews..."
+reviews_comments = [
+  "This book is amazing!",
+  "A fantastic read, highly recommend!",
+  "I couldn't put this book down!",
+  "Great book! Must read for everyone!",
+  "Interesting story, well-written!",
+  "Super fun book, really engaging!",
+  "Could not stop reading, loved it!",
+  "It’s a classic, and for good reason!"
+]
+
+bookings.each do |booking|
   rand(1..3).times do
+    user = buyers.sample
+    comment = reviews_comments.sample
     ReservationReview.create!(
-      booking: bookings.sample,
-      user: buyers.sample,
+      booking: booking,
+      user: user,
       score: rand(3..5),
-      comment: "This book is cool! nice."
+      comment: comment
     )
   end
 end

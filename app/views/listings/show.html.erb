@@ -18,7 +18,6 @@
         <h4 class="text-muted mb-3"><%= @listing.book.title %> by <%= @listing.book.author %></h4>
         <p class="text-muted"><%= @listing.condition %> - <%= @updated <= 1 ? "Updated Today" : "#{@updated} days ago" %></p>
         <p><%= @listing.comment %></p>
-        <a href="#" class="btn btn-primary btn-lg mt-3 w-100">See <%= @listing.book.title %> in our Library</a>
 
         <!-- Goodreads Link -->
         <a href="https://www.goodreads.com/search?q=<%= ERB::Util.url_encode(@listing.book.title) %>"
