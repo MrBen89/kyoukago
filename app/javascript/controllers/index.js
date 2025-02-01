@@ -2,7 +2,7 @@
 import { application } from "controllers/application"
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
-import SliderController from "./slider_controller"
+import SliderController from "controllers/slider_controller"
 application.register("hello", SliderController)
-import TotalPriceController from "./total_price_controller"
+import TotalPriceController from "controllers/total_price_controller"
 application.register("hello", TotalPriceController)
