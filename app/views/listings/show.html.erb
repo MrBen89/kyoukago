@@ -3,10 +3,10 @@
 
     <!-- Main Book Image -->
     <div class="col-lg-8 mb-4">
-      <% if @listing.image.attached? %>
-        <%= cl_image_tag @listing.image.key, class: "center-block", max_width: 350 %>
+      <% if @listing.user.profile_image.attached? %>
+        <img class="pb-3 rounded-circle shadow" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px; height: 100px;">
       <% else %>
-        <%= image_tag @listing.book.cover_url, class: "center-block", max_width: 350 %>
+        <img class="pb-3 rounded-circle shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User profile" style="width: 100px; height: 100px;">
       <% end %>
     </div>
 

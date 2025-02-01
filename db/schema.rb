@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_01_000938) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_01_045745) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,7 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_01_000938) do
     t.integer "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "total_price"
     t.index ["listing_id"], name: "index_bookings_on_listing_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -105,6 +104,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_01_000938) do
     t.string "name"
     t.string "address"
     t.string "username"
+    t.string "profile_image_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
