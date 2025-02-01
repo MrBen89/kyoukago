@@ -38,9 +38,7 @@ users = [
 ]
 
 users.each do |user_data|
-  user = User.create!(email: user_data[:email], password: user_data[:password], username: user_data[:username], name: user_data[:name], address: user_data[:address])
-  image_url = profile_images.sample
-  user.profile_image.attach(io: URI.open(image_url), filename: "#{user.username}_profile.jpg", content_type: 'image/jpeg')
+  user = User.create!(email: user_data[:email], profile_image_url: profile_images.sample(), password: user_data[:password], username: user_data[:username], name: user_data[:name], address: user_data[:address])
 end
 
 puts "Users created successfully!"

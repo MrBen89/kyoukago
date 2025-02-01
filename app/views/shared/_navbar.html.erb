@@ -14,8 +14,7 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag current_user.profile_image_url, class: "avatar", alt: "dropdown menu" %>
-          </a>
+            <%= image_tag current_user.profile_image_url, class: "avatar", alt: "dropdown menu" %>          </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My Page", user_dashboard_path, class: "dropdown-item" %>
               <%= link_to "New Listing", new_listing_path, class: "dropdown-item" %>

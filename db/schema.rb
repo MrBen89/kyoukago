@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_01_045745) do
     t.integer "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "total_price"
     t.index ["listing_id"], name: "index_bookings_on_listing_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
