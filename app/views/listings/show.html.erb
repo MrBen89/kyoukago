@@ -4,9 +4,9 @@
     <!-- Main Book Image -->
     <div class="col-lg-8 mb-4">
       <% if @listing.image.attached? %>
-        <img class="img-fluid rounded shadow" src="<%= url_for(@listing.image) %>" alt="Listing image" style="max-width: 350px; height: auto;">
+        <%= cl_image_tag @listing.image.key, class: "center-block", max_width: 350 %>
       <% else %>
-        <img class="img-fluid rounded shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="No image available" style="max-width: 350px; height: auto;">
+        <%= image_tag @listing.book.cover_url, class: "center-block", max_width: 350 %>
       <% end %>
     </div>
 
