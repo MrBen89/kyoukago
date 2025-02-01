@@ -1,0 +1,251 @@
+/* General Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 20px;
+}
+
+/* Book Details Section */
+.listing-details {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.listing-details:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Title Styling */
+.listing-details h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #8c0002;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.listing-details h1:hover {
+  color: #a8000f;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Price Section */
+.listing-details h3 {
+  font-size: 1.5rem;
+  color: #ff4081;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Condition Text Styling */
+.listing-details .text-muted {
+  font-size: 1.1rem;
+  color: #757575;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+/* Updated Condition Styling */
+.listing-details .condition {
+  font-size: 1.2rem;
+  color: #4caf50;
+  font-weight: 500;
+  margin-top: 15px;
+  transition: color 0.3s ease;
+}
+
+.listing-details .condition:hover {
+  color: #388e3c;
+}
+
+/* Comment Section Styling */
+.listing-details p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-top: 15px;
+  font-family: 'Special Elite', cursive;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.listing-details p:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* Styling for the Goodreads Link */
+.listing-details a {
+  background-color: #8c0002;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.listing-details a:hover {
+  background-color: #a8000f;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* For the Button */
+.btn-primary {
+  background-color: #8c0002;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+  background-color: #a8000f;
+  transform: translateY(-5px);
+}
+
+.btn-secondary {
+  background-color: #ff4081;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.btn-secondary:hover {
+  background-color: #e040fb;
+  transform: translateY(-5px);
+}
+
+/* Styling for the Carousel */
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-inner {
+  display: flex;
+}
+
+.carousel-item img {
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.1);
+}
+
+.card {
+  transition: transform 0.3s ease;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+}
+
+
+/* Modal Styling */
+.modal-dialog {
+  max-width: 500px;
+  border-radius: 15px;
+}
+
+.modal-header {
+  background-color: #8c0002;
+  color: white;
+  border-radius: 15px 15px 0 0;
+}
+
+.modal-body {
+  background-color: #f8f9fa;
+  padding: 30px;
+}
+
+/* Hover effects for the title in the carousel items */
+.carousel-item .card-title {
+  transition: color 0.3s ease;
+}
+
+.carousel-item .card-title:hover {
+  color: #8c0002;
+}
+
+/* Improved Button Hover Effects */
+#new-button {
+  border-radius: 50%;
+  background-color: #ff4081;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s, transform 0.3s;
+  padding: 15px;
+  font-size: 2rem;
+  color: white;
+  z-index: 1000;
+}
+
+#new-button:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+/* Fancy Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8c0002;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8000f;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .listing-details {
+    padding: 20px;
+  }
+
+  .container .row {
+    margin-top: 20px;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+  }
+
+  .carousel-item {
+    margin-top: 20px;
+  }
+}
