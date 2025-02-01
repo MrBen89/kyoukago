@@ -72,7 +72,7 @@
                 <div class="bg-light rounded mb-3" style="height: 375px;">
                   <div style="width: 250px">
                     <% if booking.listing.image.attached? %>
-                        <%= cl_image_tag booking.image.key, class: "center-block", max_width: 350 %>
+                        <%= cl_image_tag booking.listing.image.key, class: "center-block", max_width: 350 %>
                       <% else %>
                         <%= image_tag booking.listing.book.cover_url, class: "center-block", max_width: 350 %>
                       <% end %>
