@@ -71,7 +71,9 @@
     <% @suggested_books.each_with_index do |book, index| %>
       <div class="carousel-item <%= 'active' if index.zero? %>">
         <div class="card shadow-sm mx-auto" style="width: 18rem;">
-          <% if book.image.attached? %>
+          <% if book.cover_url.present? %>
+            <img class="card-img-top" src="<%= book.cover_url %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
+          <% elsif book.image.attached? %>
             <img class="card-img-top" src="<%= url_for(book.image) %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
           <% else %>
             <img class="card-img-top" src="https://via.placeholder.com/150" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">

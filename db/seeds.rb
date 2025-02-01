@@ -41,18 +41,8 @@ books_data.each do |book_data|
     title: book_data["title"],
     author: book_data["author_name"]&.join(", ") || "Unknown Author",
     publication_date: DateTime.new(book_data["first_publish_year"]) || "Date Unknown",
+    cover_url: "https://covers.openlibrary.org/b/id/#{book_data["cover_i"]}-L.jpg"
   )
-
-  cover_id = book_data["cover_i"]
-  if cover_id
-    image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
-    downloaded_image = URI.open(image_url)
-    book.image.attach(
-      io: downloaded_image,
-      filename: "#{book.title.parameterize}.jpg",
-      content_type: "image/jpeg"
-    )
-  end
   book.save
 end
 
@@ -69,43 +59,35 @@ books.sample(20).each do |book|
     condition: "Used",
     comment: "Delicious book, slightly used. Comes complete with original dust jacket and coffee stains."
   )
-
-  cover_id = books_data.find { |b| b["title"] == book.title }&.dig("cover_i")
-  if cover_id
-    image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
-    downloaded_image = URI.open(image_url)
-    listing.image.attach(
-      io: downloaded_image,
-      filename: "#{book.title.parameterize}.jpg",
-      content_type: "image/jpeg"
-    )
-  end
   listing.save
 end
 
-puts "Creating bookings..."
-buyers = User.all
-listings = Listing.all
-listings.sample(5).each do |listing|
-  Booking.create!(
-    listing: listing,
-    user: buyers.sample,
-    start_date: "2025-01-26",
-    end_date: "2025-01-28",
-    status: 0,
-    total: 350
-  )
-end
 
 puts "Creating reviews..."
 bookings = Booking.all
-listings.each do |listing|
+
+
+puts "Creating reviews..."
+reviews_comments = [
+  "This book is amazing!",
+  "A fantastic read, highly recommend!",
+  "I couldn't put this book down!",
+  "Great book! Must read for everyone!",
+  "Interesting story, well-written!",
+  "Super fun book, really engaging!",
+  "Could not stop reading, loved it!",
+  "It’s a classic, and for good reason!"
+]
+
+bookings.each do |booking|
   rand(1..3).times do
+    user = buyers.sample
+    comment = reviews_comments.sample
     ReservationReview.create!(
-      booking: bookings.sample,
-      user: buyers.sample,
+      booking: booking,
+      user: user,
       score: rand(3..5),
-      comment: "This book is cool! nice."
+      comment: comment
     )
   end
 end
