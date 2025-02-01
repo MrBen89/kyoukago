@@ -76,10 +76,13 @@
             <div class="col-md-4 mb-4">
               <div class="card shadow-sm mx-auto" style="width: 18rem;">
                 <% if book.cover_url.present? %>
+                  <!-- Display book cover if available -->
                   <img class="card-img-top" src="<%= book.cover_url %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
                 <% elsif book.image.attached? %>
+                  <!-- Display attached book image if present -->
                   <img class="card-img-top" src="<%= url_for(book.image) %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
                 <% else %>
+                  <!-- Placeholder image if no cover or attached image -->
                   <img class="card-img-top" src="https://via.placeholder.com/150" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
                 <% end %>
                 <div class="card-body">

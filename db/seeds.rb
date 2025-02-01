@@ -54,13 +54,16 @@ books_data = response.parsed_response["docs"]
 
 
 puts "Creating books..."
-sellers = User.where("username LIKE 'seller%'")
+
+genres = ["Non-Fiction", "Sci-fi", "Fantasy", "Romance", "Mystery"]
+
 books_data.each do |book_data|
   book = Book.new(
     title: book_data["title"],
     author: book_data["author_name"]&.join(", ") || "Unknown Author",
     publication_date: DateTime.new(book_data["first_publish_year"]) || "Date Unknown",
-    cover_url: "https://covers.openlibrary.org/b/id/#{book_data["cover_i"]}-L.jpg"
+    cover_url: "https://covers.openlibrary.org/b/id/#{book_data["cover_i"]}-L.jpg",
+    genre: genres.sample
   )
   book.save
 end
