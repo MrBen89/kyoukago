@@ -68,32 +68,38 @@
 <h4 class="mt-4">Users Also Bought:</h4>
 <div id="suggestedBooksCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
-    <% @suggested_books.each_with_index do |book, index| %>
-      <div class="carousel-item <%= 'active' if index.zero? %>">
-        <div class="card shadow-sm mx-auto" style="width: 18rem;">
-          <% if book.cover_url.present? %>
-            <img class="card-img-top" src="<%= book.cover_url %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
-          <% elsif book.image.attached? %>
-            <img class="card-img-top" src="<%= url_for(book.image) %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
-          <% else %>
-            <img class="card-img-top" src="https://via.placeholder.com/150" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
+    <% @suggested_books.each_slice(3).to_a.each_with_index do |books, index| %>
+      <div class="carousel-item <%= 'active' if index == 0 %>">
+        <div class="row">
+          <% books.each do |book| %>
+            <div class="col-md-4 mb-4">
+              <div class="card shadow-sm mx-auto" style="width: 18rem;">
+                <% if book.cover_url.present? %>
+                  <img class="card-img-top" src="<%= book.cover_url %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
+                <% elsif book.image.attached? %>
+                  <img class="card-img-top" src="<%= url_for(book.image) %>" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
+                <% else %>
+                  <img class="card-img-top" src="https://via.placeholder.com/150" alt="<%= book.title %>" style="height: 200px; object-fit: cover;">
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= book.title %></h5>
+                  <p class="card-text"><%= book.author %></p>
+
+                  <% if book.listings.any? %>
+                    <%= link_to "View Details", listing_path(book.listings.first), class: "btn btn-primary btn-sm" %>
+                  <% else %>
+                    <p class="text-muted">No listing available</p>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
           <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= book.title %></h5>
-            <p class="card-text"><%= book.author %></p>
-
-            <% if book.listings.any? %>
-              <%= link_to "View Details", listing_path(book.listings.first), class: "btn btn-primary btn-sm" %>
-            <% else %>
-              <p class="text-muted">No listing available</p>
-            <% end %>
-
-            <%= link_to "View on Goodreads", "https://www.goodreads.com/search?q=#{ERB::Util.url_encode(book.title)}", class: "btn btn-secondary btn-sm mt-2", target: "_blank", rel: "noopener noreferrer" %>
-          </div>
         </div>
       </div>
     <% end %>
   </div>
+  <!-- Carousel controls -->
   <button class="carousel-control-prev" type="button" data-bs-target="#suggestedBooksCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
