@@ -17,7 +17,6 @@ class ListingsController < ApplicationController
     @bookings = Booking.all
     @updated = (Date.today - @listing.updated_at.to_date).to_i
     @reviews = ReservationReview.joins(:booking).where(bookings: { listing_id: @listing.id }).limit(3)
-    puts @reviews.inspect
     @suggested_books = Book.where.not(id: @listing.book_id).limit(4)
   end
 

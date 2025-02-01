@@ -59,17 +59,6 @@ books.sample(20).each do |book|
     condition: "Used",
     comment: "Delicious book, slightly used. Comes complete with original dust jacket and coffee stains."
   )
-
-  cover_id = books_data.find { |b| b["title"] == book.title }&.dig("cover_i")
-  if cover_id
-    image_url = "https://covers.openlibrary.org/b/id/#{cover_id}-L.jpg"
-    downloaded_image = URI.open(image_url)
-    listing.image.attach(
-      io: downloaded_image,
-      filename: "#{book.title.parameterize}.jpg",
-      content_type: "image/jpeg"
-    )
-  end
   listing.save
 end
 
