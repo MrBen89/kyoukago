@@ -41,7 +41,7 @@ class ListingsController < ApplicationController
     @listing.user = current_user
     @books = Book.all
     if @listing.save
-    redirect_to listings_path, notice: "Listing created!"
+    redirect_to listing_path(@listing), notice: "Listing created!"
     else
       render :new
     end
