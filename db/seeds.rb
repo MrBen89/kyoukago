@@ -47,7 +47,7 @@ buyers = User.where("username LIKE 'buyer%'")
 puts "Created #{buyers.count} buyers"
 
 puts "Fetching books from Open Library API..."
-response = HTTParty.get("https://openlibrary.org/search.json?q=fiction&limit=250")
+response = HTTParty.get("https://openlibrary.org/search.json?q=fiction&limit=50")
 books_data = response.parsed_response["docs"]
 
 
@@ -75,7 +75,7 @@ books.sample(250).each do |book|
     book: book,
     user: buyers.sample,
     title: "#{book.title} #{['used', 'great condition', 'signed by author', 'bit skanky'].sample}",
-    price: rand(50..350),
+    price: [50, 100, 150, 200, 300, 400, 500].sample(),
     condition: "Used",
     comment: "Delicious book, slightly used. Comes complete with original dust jacket and coffee stains."
   )
