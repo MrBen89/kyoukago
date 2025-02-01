@@ -46,26 +46,27 @@
       <% end %>
     </div>
     <div class="col-lg-6">
-      <p class="font-weight-bold"><%= @listing.user.email %></p>
+      <p class="font-weight-bold"><%= @listing.user.username %></p>
       <div class="star-box mb-2">
-        <i class="fa-solid fa-star text-warning"></i>
-        <i class="fa-solid fa-star text-warning"></i>
-        <i class="fa-solid fa-star text-warning"></i>
-        <i class="fa-solid fa-star text-warning"></i>
-        <i class="fa-regular fa-star text-warning"></i>
+
+        <i class="<%= @average_review >= 0.5 ? "fa-solid" : "fa-regular" %> fa-star text-warning"></i>
+        <i class="<%= @average_review >= 1.5 ? "fa-solid" : "fa-regular" %> fa-star text-warning"></i>
+        <i class="<%= @average_review >= 2.5 ? "fa-solid" : "fa-regular" %> fa-star text-warning"></i>
+        <i class="<%= @average_review >= 3.5 ? "fa-solid" : "fa-regular" %> fa-star text-warning"></i>
+        <i class="<%= @average_review >= 4.5 ? "fa-solid" : "fa-regular" %> fa-star text-warning"></i>
       </div>
-      <p class="text-muted">42 reviews</p>
+      <p class="text-muted"><%="#{@listing.reservation_reviews.count} Reviews" %></p>
     </div>
     <div class="col-lg-4">
       <h5>Recent Reviews:</h5>
-      <% @reviews.each do |review| %>
-        <p class="text-muted"><%= review.user.email %>: "<%= review.comment %>"</p>
+      <% @listing.reservation_reviews.each do |review| %>
+        <p class="text-muted"><%= review.user.username %>: "<%= review.comment %>"</p>
       <% end %>
     </div>
   </div>
 
 <!-- Users Also Bought Section -->
-<h4 class="mt-4">Users Also Bought:</h4>
+<h4 class="mt-4">Other Reccomendations:</h4>
 <div id="suggestedBooksCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <% @suggested_books.each_slice(3).to_a.each_with_index do |books, index| %>
