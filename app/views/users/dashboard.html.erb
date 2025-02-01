@@ -1,6 +1,6 @@
 <div class="card shadow-sm border-light text-center p-4">
   <div class="mx-auto mb-3">
-    <%= image_tag "https://curiodyssey.org/wp-content/uploads/bb-plugin/cache/Mammals-Raccoon-square-52c9ad2f0a59d708f8ea24ef926b0caf-58c5dbcca8b6f.jpg",
+    <%= image_tag current_user.profile_image_url,
       class: "rounded-circle", width: 150, height: 150, alt: "User Avatar" %>
   </div>
   <h5 class="fw-bold"><%= current_user.username %></h5>
