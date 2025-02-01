@@ -3,7 +3,6 @@ require "date"
 class ListingsController < ApplicationController
   def index
     @listings = Listing.all
-    p params if params.present?
     if params[:genre].present?
       @listings = Listing.joins(:book).where("genre ILIKE ?", params[:genre] )
     elsif params[:price].present? && params[:query].present?
@@ -23,6 +22,7 @@ class ListingsController < ApplicationController
     @updated = (Date.today - @listing.updated_at.to_date).to_i
     @reviews = ReservationReview.joins(:booking).where(bookings: { listing_id: @listing.id }).limit(3)
     @suggested_books = Book.where.not(id: @listing.book_id).limit(4)
+    @average_review = review_averager
   end
 
   def update
@@ -46,6 +46,21 @@ class ListingsController < ApplicationController
   end
 
   private
+
+  def review_averager
+    total = 0
+    count = 0
+    if @listing.reservation_reviews.present?
+      @listing.reservation_reviews.each do |review|
+        total += review.score
+        count += 1
+      end
+      return total / count
+    else
+      return 0
+    end
+  end
+
 
   def listing_params
     params.require(:listing).permit(:title, :price, :condition, :comment, :book_id, :image)
