@@ -1,5 +1,10 @@
 /* General Body Styling */
-
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 20px;
+}
 
 /* Book Details Section */
 .listing-details {
