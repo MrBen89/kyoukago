@@ -3,10 +3,10 @@
 
     <!-- Main Book Image -->
     <div class="col-lg-8 mb-4">
-      <% if @listing.user.profile_image.attached? %>
-        <img class="pb-3 rounded-circle shadow" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px; height: 100px;">
+      <% if @listing.image.attached? %>
+        <%= cl_image_tag @listing.image.key, class: "center-block", width: 230 %>
       <% else %>
-        <img class="pb-3 rounded-circle shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User profile" style="width: 100px; height: 100px;">
+        <%= image_tag @listing.book.cover_url, class: "center-block", width: 230 %>
       <% end %>
     </div>
 
@@ -39,8 +39,8 @@
   <!-- User Info and Reviews -->
   <div class="row mb-3 p-3 bg-white rounded shadow">
     <div class="col-lg-2 d-flex align-items-center">
-      <% if @listing.user.profile_image.attached? %>
-        <img class="pb-3 rounded-circle shadow" src="<%= url_for(@listing.user.profile_image) %>" alt="User profile image" style="width: 100px; height: 100px;">
+      <% if @listing.user.profile_image_url %>
+        <img class="pb-3 rounded-circle shadow" src="<%= url_for(@listing.user.profile_image_url) %>" alt="User profile image" style="width: 100px; height: 100px;">
       <% else %>
         <img class="pb-3 rounded-circle shadow" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User profile" style="width: 100px; height: 100px;">
       <% end %>
