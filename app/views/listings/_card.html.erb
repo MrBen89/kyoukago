@@ -2,7 +2,7 @@
 <div class="col-6 col-sm-4 col-md-3 p-3">
   <div class="card shadow-sm border-light">
     <div class="card-body text-center">
-      <div class="bg-light rounded mb-3" style="height: 400px;">
+      <div class="bg-light rounded mb-3 d-flex align-items-center justify-content-center" style="height: 400px;">
         <div style="width: 250px">
           <% if book.image.attached? %>
             <%= cl_image_tag book.image.key, class: "center-block", width: 230 %>
